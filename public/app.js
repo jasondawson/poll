@@ -19,11 +19,6 @@ function config ($routeProvider, $httpProvider) {
 		.when('/welcome', {
 			templateUrl: '/views/welcome.html',
 			controller: 'WelcomeCtrl',
-			controllerAs: 'vm'
-		})
-		.when('/question', {
-			templateUrl: '/views/question.html',
-			controller: 'QuestionCtrl',
 			controllerAs: 'vm',
 			resolve: {
 				questionsRef: function(mainService) {
@@ -31,10 +26,18 @@ function config ($routeProvider, $httpProvider) {
 				}
 			}
 		})
+		.when('/question', {
+			templateUrl: '/views/question.html',
+			controller: 'QuestionCtrl',
+			controllerAs: 'vm'
+		})
 		.when('/results', {
 			templateUrl: '/views/results.html',
 			controller: 'ResultsCtrl',
 			controllerAs: 'vm'
+		})
+		.when('/theEnd', {
+			templateUrl: '/views/theEnd.html'
 		})
 		.otherwise('/');
 };

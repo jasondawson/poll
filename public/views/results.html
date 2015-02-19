@@ -1,1 +1,19 @@
-<h1>{{vm.test}}</h1>
+<div class="container-fluid question">
+
+	<div class="container-fluid title">
+		<p>{{vm.results.text}}</p>
+	</div>
+	<div class="container-fluid answer parent" ng-repeat="choice in vm.results.choices">
+		<div><p class="result-text">{{choice.answer}}: {{choice.timeschosen}}</p></div>
+			
+	<br class="cf" />
+
+	</div>
+		<p>Times answered: {{vm.results.total}}</p>
+	<div class="btn-wrapper">
+		<a class="btn btn-default btn-warning btn-startover" href="/#/welcome"><i class="fa fa-eject"></i></a>
+		<button class="btn btn-default btn-primary btn-next" ng-click="vm.nextQuestion()">
+			<i class="fa fa-play"></i>
+		</button>
+	</div>
+</div>

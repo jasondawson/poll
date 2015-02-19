@@ -4,10 +4,20 @@ angular
 	.module('polls')
 	.controller('ResultsCtrl', ResultsCtrl);
 
-function ResultsCtrl () {
+function ResultsCtrl ($location, mainService) {
 
 	var vm = this;
-	vm.test = "Hello Results";
+
+	vm.getResults = function() {
+		vm.results = mainService.getCurrentResults();
+		console.log(vm.results)
+	}
+
+	vm.nextQuestion = function() {
+		$location.path('/question');
+	}
+
+	vm.getResults();
 }
 
 })();

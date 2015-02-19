@@ -1,3 +1,7 @@
+/** {
+	outline: 1px solid red;
+}
+*/
 html, body {
 	background: #34495e;
 	height: 100%;
@@ -44,9 +48,47 @@ html, body {
 }
 
 .btn__text {
-	font-size: 2em;
-	line-height: 100%;
+	font-size: 1.2em;
+	position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
 }
+
+.btn-wrapper {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	top: .2em;
+}
+
+.btn-next {
+	flex-grow: 2;
+	height: 1.8em;
+	font-size: 1.2em;
+}
+
+.btn-startover {
+	flex-grow: 1;
+	height: 1.8em;
+	width: auto;
+	max-width: 40%;
+	font-size: 1.2em;
+}
+
+.answer-text {
+	font-size: 1.2em;
+}
+
+.result-text {
+	font-size: .8em;
+}
+
+.btn-answer:hover {
+	position: relative;
+	background: #2ecc71;
+	left: .8em;
+}
+
 
 /* For modern browsers */
 .cf:before,
@@ -62,4 +104,8 @@ clear:both;
 /* For IE 6/7 (triggers hasLayout) */
 .cf {
   *zoom:1;
+}
+
+.btn {
+	border-radius: 10px;
 }

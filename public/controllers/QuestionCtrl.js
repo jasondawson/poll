@@ -4,18 +4,19 @@ angular
 	.module('polls')
 	.controller('QuestionCtrl', QuestionCtrl);
 
-function QuestionCtrl (questionsRef, mainService) {
+function QuestionCtrl (mainService, $location) {
 
 	var vm = this;
 	vm.test = "Hello Question";
-
-	console.log(questionsRef);
 	
 	vm.getQuestion = function() {
 		mainService.getQuestion().then(function(res) {
+			console.log(res);
 			vm.question = res;
 		})
 	}
+
+
 
 	vm.getQuestion();
 
@@ -27,8 +28,16 @@ function QuestionCtrl (questionsRef, mainService) {
 		mainService.answerQuestion(questionId, answerIndex, toRemove)
 			.then(function(res) {
 				console.log(res);
+				vm.results = res;
+				$location.path('/results');
 			});
-	} 
+	}
+
+	vm.nextQuestion = function() {
+
+	}
+
+
 	
 }
 

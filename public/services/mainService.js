@@ -4,23 +4,36 @@ angular
 	.module('polls')
 	.service('mainService', mainService);
 
-function mainService ($http, $q) {
+function mainService ($http, $q, $location) {
 
 	var apiUrl = 'http://127.0.0.1:8080';
 	var questionsArr = [];
+	var currentResults = {};
 
-	this.getQuestion = function(num) {
-		if(num) {
-			questionsArr.splice(num, 1);
+	var removeCachedQuestion = function(index) {
+		questionsArr.splice(index, 1);
+	}
+
+	this.getCurrentResults = function() {
+		return currentResults;
+	}
+
+
+
+	this.getQuestion = function() {
+		if (questionsArr.length) {
+			var dfd = $q.defer();
+			var arrIndex = Math.floor(Math.random() * (questionsArr.length - 0)) + 0;
+			var currentQuestion = questionsArr[arrIndex];
+			
+			currentQuestion.selected = arrIndex;
+			dfd.resolve(currentQuestion)
+
+			return dfd.promise;
 		}
-		var dfd = $q.defer();
-		var arrIndex = Math.floor(Math.random() * (questionsArr.length - 0)) + 0;
-		var currentQuestion = questionsArr[arrIndex];
-		currentQuestion.selected = arrIndex;
-		//questionsArr[arrIndex].selected = arrIndex;
-		//console.log(questionsArr[arrIndex].selected);
-		dfd.resolve(currentQuestion)
-		return dfd.promise;
+		else {
+			$location.path('/theEnd');
+		}
 	}
 
 	this.getQuestions = function() {
@@ -40,11 +53,20 @@ function mainService ($http, $q) {
 	}
 
 	this.answerQuestion = function(questionId, answerIndex, toRemove) {
-		//increment count to appropriate response and remove question from cached questionArr
+		//increment count to appropriate response 
 		var dfd = $q.defer();
 		$http.put(apiUrl + '/api/questions/' + questionId + '/' + answerIndex)
 			.success(function(res) {
-				dfd.resolve(res);
+				//TODO remove question from cache questionArr
+				removeCachedQuestion(toRemove);
+				//add total times answered as a property on currentResults
+				var total = 0;
+				for (var i = 0; i < res.choices.length; i++) {
+					total += res.choices[i].timeschosen;
+				}
+				currentResults = res;
+				currentResults.total = total;
+				dfd.resolve();
 			})
 			.error(function(err) {
 				console.log(err);
