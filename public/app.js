@@ -2,9 +2,14 @@
 
 angular
 	.module('polls', ['ngRoute'])
-	.config(config);
+	.config(config)
+	/*.factory('myHttpInterceptor', myHttpInterceptor)*/;
 
-function config ($routeProvider) {
+function config ($routeProvider, $httpProvider) {
+	//for unauthenticated redirects
+	//$httpProvider.interceptors.push('myHttpInterceptor');
+
+	//routes
 	$routeProvider
 		.when('/', {
 			templateUrl: '/views/main.html',
@@ -32,6 +37,19 @@ function config ($routeProvider) {
 			controllerAs: 'vm'
 		})
 		.otherwise('/');
-}
+};
+
+/*function myHttpInterceptor($q) {
+	return {
+		//optional method
+		'responseError': function(rejection) {
+			if (rejection.status == 401) {
+				document.location = '/';
+				return;
+			}
+			return $q.reject(rejection);
+		}
+	};
+};*/
 
 })();

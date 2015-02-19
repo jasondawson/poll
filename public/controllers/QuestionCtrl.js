@@ -19,9 +19,15 @@ function QuestionCtrl (questionsRef, mainService) {
 
 	vm.getQuestion();
 
-	vm.answerQuestion = function(id) {
-		console.log(id);
-		console.log(vm.question.selected)
+	vm.answerQuestion = function(answerIndex) {
+		console.log(answerIndex);
+		console.log(vm.question.selected);
+		var toRemove = vm.question.selected;
+		var questionId = vm.question._id;
+		mainService.answerQuestion(questionId, answerIndex, toRemove)
+			.then(function(res) {
+				console.log(res);
+			});
 	} 
 	
 }

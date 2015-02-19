@@ -3,9 +3,10 @@
 		<p>{{vm.question.text}}</p>
 	</div>
 	<div class="container answer parent">
-		<div class="child btn btn-default btn-block" ng-repeat="choice in vm.question.choices">
-			<a class="btn__text" ng-click="vm.answerQuestion(choice._id)">{{choice.answer}}</a>
-		</div>
+			<div class="child btn btn-default btn-block" ng-repeat="choice in vm.question.choices" ng-click="vm.answerQuestion($index)">
+				<p>{{choice.answer}}</p>
+			</div>
+
 	<br class="cf" />
 	</div>
 </div>

@@ -15,7 +15,7 @@ var mongoUri = '127.0.0.1:27034/polls';
 
 var isAuthed = function (req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/');
+  res.status(401).redirect('/');
 }
 
 var app = Express();
@@ -58,6 +58,8 @@ app.get('/auth/google/callback', Passport.authenticate('google', { failureRedire
   function(req, res) {
     //successful authentication redirect, redirect user to welcome screen.
     res.redirect('/#/welcome');
+    //res.status(200).json(req.user);
+
   });
 app.get('/logout', function(req, res){
   req.logout();
@@ -68,6 +70,9 @@ app.get('/logout', function(req, res){
 
 
 app.get('/api/questions', isAuthed, Question.getQuestions);
+
+app.put('/api/questions/:questionId/:answerIndex', isAuthed, Question.answerQuestion);
+
 
 //for seed data and later
 //app.post('/api/questions', Question.addQuestion);

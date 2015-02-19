@@ -4,7 +4,7 @@ var Q = require('q');
 module.exports = {
 	updateOrCreate: function(user){
 		var deferred = Q.defer();
-		User.findOne({ googleId: user.id }, function(err, results){
+		User.findOne({ 'googleId': user.id }, function(err, results){
 			if(err) return deferred.reject(err);
 			if(results){
 				User.update({ _id: results._id }, {
@@ -39,7 +39,7 @@ module.exports = {
 	},
 	getUser: function(id){
 		var deferred = Q.defer();
-		User.findOne({ googleId: id }, function(err, results){
+		User.findOne({ 'googleId': id }, function(err, results){
 			if(err){
 				deferred.reject(err);
 			} else {
@@ -51,7 +51,7 @@ module.exports = {
 	put: function(req, res){
 		delete req.body._id;
 		console.log(req.body)
-		User.update({ _id: req.params.id }, req.body, function(err, results){
+		User.update({ '_id': req.params.id }, req.body, function(err, results){
 			console.log(err, results);
 			if(err){
 				res.status(500).json(err);

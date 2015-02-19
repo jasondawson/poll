@@ -5,7 +5,10 @@ var schema = Mongoose.Schema({
 	//user schema
 	name: {type: String, required: true},
 	googleId: { type: Number, required: true, unique: true },
-	email: {type: String, unique: true},
+	email: {type: String},
+	plusLink: String,
+	picture: String,
+	gender: String, 
 	num_answered: {type: Number, default: 0}
 	/*
 	//for local login
