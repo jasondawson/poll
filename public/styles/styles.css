@@ -1,0 +1,65 @@
+html, body {
+	background: #34495e;
+	height: 100%;
+	width: 100%;
+	font-size: 1em;
+}
+
+
+.question {
+	background: #bdc3c7;
+	width: 60%;
+	min-height: 80%;
+	font-size: 1.5em;
+	border-radius: 0.8em;
+	padding-top: 1.5em;
+	padding-left: 1.5em;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	min-height: 20%;
+	flex-grow: 1;
+}
+
+.answer {
+	min-height: 100%;
+	width: 100%;
+	margin-left: 1.5em;
+	flex-grow: 4;
+}
+
+.parent {
+	display: flex;
+	flex-direction: column;
+	font-size: 1.5em;
+	justify-content: space-between;
+}
+
+.child {
+	flex-grow: 1;
+	height: 100%;
+}
+
+.btn__text {
+	font-size: 2em;
+	line-height: 100%;
+}
+
+/* For modern browsers */
+.cf:before,
+.cf:after {
+  content:"";
+  display:table;
+}
+ 
+.cf:after {
+clear:both;
+}
+ 
+/* For IE 6/7 (triggers hasLayout) */
+.cf {
+  *zoom:1;
+}

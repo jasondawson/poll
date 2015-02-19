@@ -1,1 +1,11 @@
-<h1>{{vm.test}}</h1>
+<div class="container-fluid question">
+	<div class="container-fluid title">
+		<p>{{vm.question.text}}</p>
+	</div>
+	<div class="container answer parent">
+		<div class="child btn btn-default btn-block" ng-repeat="choice in vm.question.choices">
+			<a class="btn__text" ng-click="vm.answerQuestion(choice._id)">{{choice.answer}}</a>
+		</div>
+	<br class="cf" />
+	</div>
+</div>

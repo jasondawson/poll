@@ -4,7 +4,8 @@ var Q = require('q');
 var schema = Mongoose.Schema({
 	//user schema
 	name: {type: String, required: true},
-	email: {type: String, required: true, unique: true},
+	googleId: { type: Number, required: true, unique: true },
+	email: {type: String, unique: true},
 	num_answered: {type: Number, default: 0}
 	/*
 	//for local login

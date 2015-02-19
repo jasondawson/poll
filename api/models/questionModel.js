@@ -5,8 +5,10 @@ var schema = Mongoose.Schema({
 	//question schema
 	text: {type: String, required: true},
 	//may need to separate out these to individual responses?
-	responses: [{type: String}],
-	answered: [{type: Number}]
+	choices: [{
+			answer: {type: String},
+			timeschosen: {type: Number, default: 0}
+		}]
 	//categories: [{type: String}]
 });
 

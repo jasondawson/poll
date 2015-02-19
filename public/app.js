@@ -2,7 +2,7 @@
 
 angular
 	.module('polls', ['ngRoute'])
-	.config(config)
+	.config(config);
 
 function config ($routeProvider) {
 	$routeProvider
@@ -19,7 +19,12 @@ function config ($routeProvider) {
 		.when('/question', {
 			templateUrl: '/views/question.html',
 			controller: 'QuestionCtrl',
-			controllerAs: 'vm'
+			controllerAs: 'vm',
+			resolve: {
+				questionsRef: function(mainService) {
+					return mainService.getQuestions();
+				}
+			}
 		})
 		.when('/results', {
 			templateUrl: '/views/results.html',
