@@ -16,11 +16,22 @@ html, body {
 	min-height: 80%;
 	font-size: 1.5em;
 	border-radius: 0.8em;
-	padding-top: 1.5em;
-	padding-left: 1.5em;
-	position: relative;
+	padding: 1em;
 	display: flex;
 	flex-direction: column;
+}
+
+.question-child-title {
+	flex-grow: 2;
+}
+
+.question-child-main {
+	flex-grow: 6;
+}
+
+.question-child-buttons {
+	flex-grow: 1;
+	top: .5em;
 }
 
 .title {
@@ -29,10 +40,9 @@ html, body {
 }
 
 .answer {
-	min-height: 100%;
+	min-height: 110%;
 	width: 100%;
 	margin-left: 1.5em;
-	flex-grow: 4;
 }
 
 .parent {
@@ -43,7 +53,7 @@ html, body {
 }
 
 .child {
-	flex-grow: 1;
+	flex-grow: 1.2;
 	height: 100%;
 }
 
@@ -58,7 +68,7 @@ html, body {
 	display: flex;
 	justify-content: space-between;
 	position: relative;
-	top: .2em;
+	bottom: -.2em;
 }
 
 .btn-next {
@@ -108,4 +118,9 @@ clear:both;
 
 .btn {
 	border-radius: 10px;
+}
+
+#mychart {
+	min-height: 80%;
+	flex-grow: 4;
 }

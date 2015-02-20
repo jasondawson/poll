@@ -1,16 +1,16 @@
 <div class="container-fluid question">
 
-	<div class="container-fluid title">
+	<div class="container-fluid title question-child-title">
 		<p>{{vm.question.text}}</p>
 	</div>
-	<div class="container answer parent">
+	<div class="container-fluid parent answer question-child-main">
 			<div class="child btn btn-default btn-block btn-answer" ng-repeat="choice in vm.question.choices" ng-click="vm.answerQuestion($index)">
 				<p class="answer-text">{{choice.answer}}</p>
 			</div>
 
 	<br class="cf" />
 	</div>
-	<div class="btn-wrapper">
+	<div class="btn-wrapper question-child-buttons">
 		<a class="btn btn-default btn-warning btn-startover" href="/#/welcome"><i class="fa fa-eject"></i></a>
 	</div>
 </div>
