@@ -1,5 +1,6 @@
 var Mongoose = require('mongoose');
 var Question = require('./../models/questionModel');
+var User = require('./../models/userModel');
 var Q = require('q');
 
 
@@ -31,16 +32,21 @@ module.exports = {
 	},
 
 	answerQuestion: function(req, res) {
-		console.log(req.params.questionId);
-		console.log(req.params.answerIndex);
-
 		Question
 			.findById(req.params.questionId)
 			.exec()
 			.then(function(response) {
 				response.choices[req.params.answerIndex].timeschosen++;
 				response.save();
-				res.status(200).json(response);
+				//increment number of user responses
+				User
+					.findOne({'googleId': req.user.id})
+					.exec()
+					.then(function(currentUser) {
+						currentUser.num_answered++;
+						currentUser.save();
+						res.status(200).json(response);
+					})
 			})
 
 	/*	Question

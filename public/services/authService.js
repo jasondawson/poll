@@ -6,17 +6,18 @@ angular
 
 function authService($http, $q) {
 
-/*	this.logIn = function() {
+	currentUser = {};
+
+	this.getCurrentUser = function() {
 		var dfd = $q.defer();
-		$http.get('/auth/google')
-			.success(function(res) {
-				console.log(res);
-			})
-			.error(function(err) {
-				console.log(err);
+		$http.get('/auth/currentUser')
+			.then(function(res) {
+				currentUser = res;
+				console.log(currentUser);
+				dfd.resolve(currentUser);
 			})
 		return dfd.promise;
-	}*/
+	}
 
 }
 

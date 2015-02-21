@@ -11,10 +11,12 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var port = 8080;
 var mongoUri = '127.0.0.1:27034/polls';
-
+var currentUser = {};
 
 var isAuthed = function (req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
+  if (req.isAuthenticated()) { 
+    currentUser = req.user;
+    return next(); }
   res.status(401).redirect('/');
 }
 
@@ -57,14 +59,21 @@ app.get('/auth/google', Passport.authenticate('google', {scope: 'https://www.goo
 app.get('/auth/google/callback', Passport.authenticate('google', { failureRedirect: '/' }),
   function(req, res) {
     //successful authentication redirect, redirect user to welcome screen.
+    //console.log(req.user);
+    currentUser = req.user;
+    console.log(currentUser);
     res.redirect('/#/welcome');
     //res.status(200).json(req.user);
-
   });
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+
+app.get('/auth/currentUser', isAuthed, function() {
+  return res.status(200).json(req.user);
+})
+
 
 //endpoints
 

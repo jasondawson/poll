@@ -1,7 +1,7 @@
 (function() {
 
 angular
-	.module('polls', ['ngRoute'])
+	.module('polls', ['ngRoute', 'ngSanitize'])
 	.config(config)
 	/*.factory('myHttpInterceptor', myHttpInterceptor)*/;
 

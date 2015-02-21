@@ -9,24 +9,44 @@ html, body {
 	font-size: 1em;
 }
 
+/* user info */
+
+.user-info {
+	height: 250px;
+	width: 220px;
+	border: 2px solid black;
+	border-radius: 12px;
+	background: #bdc3c7;
+	position: fixed;
+	top: 22px;
+	left: 10px;
+}
+
+
+
+/* other */
+
+.title {
+	min-height: 80px;
+}
 
 .question {
 	background: #bdc3c7;
 	width: 60%;
-	min-height: 80%;
+	height: 500px;
 	font-size: 1.5em;
-	border-radius: 0.8em;
+	border-radius: 12px;
 	padding: 1em;
 	display: flex;
 	flex-direction: column;
 }
 
 .question-child-title {
-	flex-grow: 2;
+	flex-grow: 1;
 }
 
 .question-child-main {
-	flex-grow: 6;
+	flex-grow: 3;
 }
 
 .question-child-buttons {
@@ -34,15 +54,16 @@ html, body {
 	top: .5em;
 }
 
-.title {
-	min-height: 20%;
+.title-flex {
+	min-height: 80px;
 	flex-grow: 1;
 }
 
 .answer {
-	min-height: 110%;
+	min-height: 80%;
 	width: 100%;
 	margin-left: 1.5em;
+	flex-grow: 3;
 }
 
 .parent {
@@ -68,13 +89,18 @@ html, body {
 	display: flex;
 	justify-content: space-between;
 	position: relative;
-	bottom: -.2em;
+	top: 1px;
 }
 
 .btn-next {
 	flex-grow: 2;
 	height: 1.8em;
 	font-size: 1.2em;
+}
+
+.btn-next:hover {
+	position: relative;
+	bottom: .3em;
 }
 
 .btn-startover {
@@ -85,8 +111,13 @@ html, body {
 	font-size: 1.2em;
 }
 
+.btn-startover:hover {
+	position: relative;
+	bottom: .3em;
+}
+
 .answer-text {
-	font-size: 1.2em;
+	font-size: 1.4em;
 }
 
 .result-text {
@@ -99,6 +130,9 @@ html, body {
 	left: .8em;
 }
 
+.clear {
+	clear:both;
+}
 
 /* For modern browsers */
 .cf:before,
@@ -117,10 +151,79 @@ clear:both;
 }
 
 .btn {
-	border-radius: 10px;
+	border-radius: 12px;
 }
 
 #mychart {
-	min-height: 80%;
+	max-width: 60%;
 	flex-grow: 4;
+}
+
+.pull-left {
+	display: inline-block;
+	float: left;
+}
+
+.pull-right {
+	display: inline-block;
+	float: right;
+}
+
+.legend {
+	width: 200px;
+	font-size: .9em;
+	padding: 10px;
+}
+
+legend > li {
+	height: 1.1em;
+	margin-bottom: 20px;
+}
+
+span.custom-bullet0 {
+	margin-bottom: 5px;
+	padding: 5px;
+	height: 1em;
+	width: 1em;
+	border-radius: 5px;
+	background: #F7464A;
+}
+
+span.custom-bullet1 {
+	padding: 5px;
+	height: 1em;
+	width: 1em;
+	border-radius: 5px;
+	background: #46BFBD;
+}
+
+span.custom-bullet2 {
+	padding: 5px;
+	height: 1em;
+	width: 1em;
+	border-radius: 5px;
+	background: #FDB45C;
+}
+
+span.custom-bullet3 {
+	padding: 5px;
+	height: 1em;
+	width: 1em;
+	border-radius: 5px;
+	background: #3498db;
+}
+
+
+
+.inline = {
+	display: inline-block;
+}
+
+.clear {
+	clear: both;
+}
+
+canvas {
+	position: relative;
+	bottom: 20px;
 }

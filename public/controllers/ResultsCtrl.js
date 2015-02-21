@@ -30,7 +30,8 @@ function ResultsCtrl ($location, mainService) {
 
 	vm.getResults = function() {
 		var data = [];
-		var options = {legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"}
+		var options = {legendTemplate : "<div class=\"<%=name.toLowerCase()%>-legend legend\"><% for (var i=0; i<segments.length; i++){%><span class=\"custom-bullet<%=i%> inline\" style=\"background-color:<%=segments[i].fillColor%>\"><%if(segments[i].label){%><%=segments[i].label%></span><%}%><br class=\"clear\" /><%}%></div>",
+			animateScale : true}
 
 		vm.results = mainService.getCurrentResults();
 		console.log(vm.results);
@@ -46,7 +47,8 @@ function ResultsCtrl ($location, mainService) {
 		console.log(data);
 		var ctx = document.getElementById("myChart").getContext("2d");
 		var myDoughnutChart = new Chart(ctx).Doughnut(data, options);
-		myDoughnutChart.generateLegend();
+		vm.legendHtml = myDoughnutChart.generateLegend();
+		console.log(vm.legendHtml);
 	}
 
 	vm.nextQuestion = function() {

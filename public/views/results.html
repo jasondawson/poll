@@ -1,18 +1,11 @@
 <div class="container question">
-<div class="title">{{vm.results.text}}
-<canvas id="myChart" height="400px" width="400px"></canvas>
+<div class="title-flex">{{vm.results.text}}</div>
+<div class="container answer">
+<canvas class="clear pull-left" id="myChart" height="350px" width="350px"></canvas>
+<span class="pull-right" ng-bind-html="vm.legendHtml"></span>
 <br class="cf" />
 </div>
-<!-- 	<div class="container-fluid title">
-	<p>{{vm.results.text}}</p>
-</div>
-<div class="container-fluid answer parent" ng-repeat="choice in vm.results.choices">
-	<div><p class="result-text">{{choice.answer}}: {{choice.timeschosen}}</p></div>
-		
-<br class="cf" />
 
-</div>
-	<p>Times answered: {{vm.results.total}}</p> -->
 	<div class="btn-wrapper">
 		<a class="btn btn-default btn-warning btn-startover" href="/#/welcome"><i class="fa fa-eject"></i></a>
 		<button class="btn btn-default btn-primary btn-next" ng-click="vm.nextQuestion()">

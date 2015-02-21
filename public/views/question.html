@@ -1,9 +1,9 @@
 <div class="container-fluid question">
 
-	<div class="container-fluid title question-child-title">
+	<div class="container-fluid title-flex question-child-title">
 		<p>{{vm.question.text}}</p>
 	</div>
-	<div class="container-fluid parent answer question-child-main">
+	<div class="container parent answer question-child-main">
 			<div class="child btn btn-default btn-block btn-answer" ng-repeat="choice in vm.question.choices" ng-click="vm.answerQuestion($index)">
 				<p class="answer-text">{{choice.answer}}</p>
 			</div>
@@ -14,3 +14,22 @@
 		<a class="btn btn-default btn-warning btn-startover" href="/#/welcome"><i class="fa fa-eject"></i></a>
 	</div>
 </div>
+
+
+<!-- TODO make this better-->
+<!-- <div class="container-fluid">
+
+	<div class="container-fluid">
+		<p>{{vm.question.text}}</p>
+	</div>
+	<div class="container">
+			<div class="btn btn-default btn-block" ng-repeat="choice in vm.question.choices" ng-click="vm.answerQuestion($index)">
+				<p class="">{{choice.answer}}</p>
+			</div>
+
+	<br class="cf" />
+	</div>
+	<div class="btn-wrapper">
+		<a class="btn btn-default btn-warning btn-startover" href="/#/welcome"><i class="fa fa-eject"></i></a>
+	</div>
+</div> -->
