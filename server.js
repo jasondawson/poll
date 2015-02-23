@@ -17,7 +17,7 @@ var isAuthed = function (req, res, next) {
   if (req.isAuthenticated()) { 
     currentUser = req.user;
     return next(); }
-  res.status(401).redirect('/');
+  res.status(401);
 }
 
 var app = Express();
@@ -65,14 +65,16 @@ app.get('/auth/google/callback', Passport.authenticate('google', { failureRedire
     res.redirect('/#/welcome');
     //res.status(200).json(req.user);
   });
-app.get('/logout', function(req, res){
+app.get('/auth/logout', function(req, res){
   req.logout();
-  res.redirect('/');
+  res.status(200).end();
 });
 
-app.get('/auth/currentUser', isAuthed, function() {
-  return res.status(200).json(req.user);
-})
+app.get('/auth/currentUser', isAuthed, function(req, res) {
+  User.getUser(req.user.id).then(function(response) {
+    res.status(200).json(response);
+  })
+});
 
 
 //endpoints
@@ -84,7 +86,7 @@ app.put('/api/questions/:questionId/:answerIndex', isAuthed, Question.answerQues
 
 
 //for seed data and later
-//app.post('/api/questions', Question.addQuestion);
+app.post('/api/questions', Question.addQuestion);
 
 
 

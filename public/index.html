@@ -15,8 +15,17 @@
 	<div ng-controller="MainCtrl as main">
 		
 	
-	<div class="container user-info">
-	A user info panel
+	<div class="container user-info show-fade" ng-show="$root.currentUser.name">
+	<div class="profile-header-wrapper">
+	<img class="profile-image" src="{{$root.currentUser.picture}}" alt="" />
+	<button class="btn btn-default btn-primary flex-top" ng-click="main.logout()">Log Out</button>
+	</div>
+	<hr>
+	<div class="profile-text">{{$root.currentUser.name}}</div>
+	<p>has answered</p>
+	<div class="profile-text">{{$root.currentUser.num_answered}}</div>
+	<p>questions!</p>
+	<br class="clear" />
 	</div>
 	</div>
 	<ng-view class="container"></ng-view>
@@ -28,6 +37,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular-sanitize.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular-animate.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
 <script src="/app.js"></script>
 <script src="/controllers/MainCtrl.js"></script>

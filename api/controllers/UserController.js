@@ -38,11 +38,13 @@ module.exports = {
 		return deferred.promise;
 	},
 	getUser: function(id){
+		console.log(id);
 		var deferred = Q.defer();
 		User.findOne({ 'googleId': id }, function(err, results){
 			if(err){
 				deferred.reject(err);
 			} else {
+				console.log(results);
 				deferred.resolve(results);
 			}
 		})

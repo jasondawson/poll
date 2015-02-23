@@ -1,10 +1,14 @@
 
 <div class="container-fluid question">
 <p class="title">Questions</p>
-<div class="btn-wrapper">
-<a class="btn btn-default btn-social btn-google-plus" href="/auth/google">
+<div class="btn-wrapper btn-wrapper-login">
+<a class="btn btn-default btn-social btn-google-plus col-md-4" href="/auth/google" ng-hide="$root.currentUser.name">
 			<i class="fa fa-google-plus"></i>
 			Sign in with Google
+		</a>
+<a class="btn btn-default btn-social btn-facebook col-md-4" href="" ng-hide="$root.currentUser.name">
+			<i class="fa fa-facebook"></i>
+			Sign in with Facebook
 		</a>
 </div>
 		</div>

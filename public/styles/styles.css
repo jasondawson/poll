@@ -17,11 +17,46 @@ html, body {
 	border: 2px solid black;
 	border-radius: 12px;
 	background: #bdc3c7;
+	padding: 8px;
 	position: fixed;
 	top: 22px;
 	left: 10px;
+	text-align: center;
 }
 
+.user-info hr {
+	margin: 10px;
+}
+
+.profile-header-wrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.flex-top {
+	align-self: flex-start;
+}
+
+.profile-image {
+	height: 80px;
+	width: auto;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+.profile-text {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.show-fade-default {
+	transition:all linear .5s;
+}
+
+.show-fade.ng-hide {
+  opacity: 0;
+}
 
 
 /* other */
@@ -152,6 +187,7 @@ clear:both;
 
 .btn {
 	border-radius: 12px;
+	margin-bottom: 5px;
 }
 
 #mychart {
@@ -214,7 +250,6 @@ span.custom-bullet3 {
 }
 
 
-
 .inline = {
 	display: inline-block;
 }
@@ -226,4 +261,9 @@ span.custom-bullet3 {
 canvas {
 	position: relative;
 	bottom: 20px;
+}
+
+.btn-wrapper-login {
+	display: flex;
+	flex-direction: column;
 }

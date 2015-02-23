@@ -24,6 +24,7 @@ module.exports = {
 	getQuestions: function(req, res) {
 		Question
 			.find()
+			.where('active').equals(true)
 			.select('_id text choices')
 			.exec()
 			.then(function(questions) {

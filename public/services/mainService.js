@@ -6,6 +6,8 @@ angular
 
 function mainService ($http, $q, $location) {
 
+	var mS = this;
+
 	var apiUrl = 'http://127.0.0.1:8080';
 	var questionsArr = [];
 	var currentResults = {};
@@ -21,27 +23,33 @@ function mainService ($http, $q, $location) {
 
 
 	this.getQuestion = function() {
-		if (questionsArr.length) {
 			var dfd = $q.defer();
-			var arrIndex = Math.floor(Math.random() * (questionsArr.length - 0)) + 0;
-			var currentQuestion = questionsArr[arrIndex];
-			
-			currentQuestion.selected = arrIndex;
-			dfd.resolve(currentQuestion)
-
-			return dfd.promise;
-		}
+		if (!questionsArr.length) {
+			console.log('refresh questions')
+			mS.getQuestions().then(function() {
+				var arrIndex = Math.floor(Math.random() * (questionsArr.length - 0)) + 0;
+				var currentQuestion = questionsArr[arrIndex];
+				currentQuestion.selected = arrIndex;
+				dfd.resolve(currentQuestion)
+			});
+		} 
 		else {
-			$location.path('/theEnd');
-		}
+
+		var arrIndex = Math.floor(Math.random() * (questionsArr.length - 0)) + 0;
+		var currentQuestion = questionsArr[arrIndex];
+		currentQuestion.selected = arrIndex;
+		dfd.resolve(currentQuestion)
 	}
+		return dfd.promise;		
+		}
+
 
 	this.getQuestions = function() {
 		var dfd = $q.defer();
 		if (!questionsArr.length) {
 		$http.get(apiUrl + '/api/questions')
 			.success(function(res) {
-				console.log(res);
+				//console.log(res);
 				questionsArr = res;
 				dfd.resolve();
 			})

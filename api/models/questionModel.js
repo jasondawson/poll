@@ -8,7 +8,8 @@ var schema = Mongoose.Schema({
 	choices: [{
 			answer: {type: String},
 			timeschosen: {type: Number, default: 0}
-		}]
+		}],
+	active: {type: Boolean, default: false}
 	//categories: [{type: String}]
 });
 

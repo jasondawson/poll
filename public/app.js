@@ -1,13 +1,14 @@
 (function() {
 
 angular
-	.module('polls', ['ngRoute', 'ngSanitize'])
+	.module('polls', ['ngRoute', 'ngSanitize', 'ngAnimate'])
 	.config(config)
-	/*.factory('myHttpInterceptor', myHttpInterceptor)*/;
+	.factory('myHttpInterceptor', myHttpInterceptor)
+	.run(run);
 
 function config ($routeProvider, $httpProvider) {
 	//for unauthenticated redirects
-	//$httpProvider.interceptors.push('myHttpInterceptor');
+	$httpProvider.interceptors.push('myHttpInterceptor');
 
 	//routes
 	$routeProvider
@@ -23,6 +24,9 @@ function config ($routeProvider, $httpProvider) {
 			resolve: {
 				questionsRef: function(mainService) {
 					return mainService.getQuestions();
+				},
+				currentUserRef: function(authService) {
+					return authService.getCurrentUser();
 				}
 			}
 		})
@@ -42,17 +46,32 @@ function config ($routeProvider, $httpProvider) {
 		.otherwise('/');
 };
 
-/*function myHttpInterceptor($q) {
+function myHttpInterceptor($q) {
 	return {
 		//optional method
 		'responseError': function(rejection) {
 			if (rejection.status == 401) {
-				document.location = '/';
+				console.log('Redirected');
+				document.location = '/main';
 				return;
 			}
 			return $q.reject(rejection);
 		}
 	};
-};*/
+};
+
+
+function run($rootScope, $location, authService) {
+	$rootScope.$on('$routeChangeStart', function(event, next, current) {
+		$rootScope.currentUser = authService.getCurrentUser();
+
+			if (!$rootScope.currentUser) {
+
+				$location.path('/main');
+			}
+		
+		})
+
+	}
 
 })();

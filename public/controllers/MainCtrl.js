@@ -4,12 +4,16 @@ angular
 	.module('polls')
 	.controller('MainCtrl', MainCtrl);
 
-function MainCtrl (currentUser, authService) {
+function MainCtrl (authService, $location) {
 
 	var main = this;
 
-	/*main.getCurrentUser*/
-
+	main.logout = function() {
+		authService.logout()
+			.then(function() {
+				$location.path('/')
+			});
+	}
 }
 
 })();
