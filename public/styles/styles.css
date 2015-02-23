@@ -134,6 +134,7 @@ html, body {
 }
 
 .btn-next:hover {
+	transition-delay: 400ms;
 	position: relative;
 	bottom: .3em;
 }
@@ -266,4 +267,8 @@ canvas {
 .btn-wrapper-login {
 	display: flex;
 	flex-direction: column;
+}
+
+
+.formly-field {
 }

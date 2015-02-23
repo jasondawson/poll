@@ -1,7 +1,11 @@
 (function() {
 
 angular
-	.module('polls', ['ngRoute', 'ngSanitize', 'ngAnimate'])
+	.module('polls', [	'ngRoute', 
+						'ngSanitize', 
+						'ngAnimate', 
+						'formly',
+						'formlyBootstrap'])
 	.config(config)
 	.factory('myHttpInterceptor', myHttpInterceptor)
 	.run(run);
@@ -42,6 +46,11 @@ function config ($routeProvider, $httpProvider) {
 		})
 		.when('/theEnd', {
 			templateUrl: '/views/theEnd.html'
+		})
+		.when('/question/submit', {
+			templateUrl: '/views/questionSubmit.html',
+			controller: 'QuestionSubmitCtrl',
+			controllerAs: 'vm'
 		})
 		.otherwise('/');
 };

@@ -82,6 +82,26 @@ function mainService ($http, $q, $location) {
 		return dfd.promise;
 	}
 
+	this.addQuestion = function(questionObj) {
+		var dfd = $q.defer();
+		var newQuestion = {};
+			newQuestion.text = questionObj.text;
+			delete questionObj.text;
+			newQuestion.choices = [];
+			for (var key in questionObj) {
+				if (questionObj[key]) {
+					newQuestion.choices.push({"answer": questionObj[key]});
+				}
+			}
+			
+			$http.post(apiUrl + '/api/questions', newQuestion)
+				.success(function(res) {
+					console.log(res);
+					dfd.resolve();
+				})
+		return dfd.promise;
+	}
+
 }
 
 })();
