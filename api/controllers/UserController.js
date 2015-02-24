@@ -4,13 +4,13 @@ var Q = require('q');
 module.exports = {
 	updateOrCreate: function(user){
 		var deferred = Q.defer();
-		User.findOne({ 'googleId': user.id }, function(err, results){
+		User.findOne({ 'socialId': user.id }, function(err, results){
 			if(err) return deferred.reject(err);
 			if(results){
 				User.update({ _id: results._id }, {
-					name: user.displayName,
-					plusLink: user._json.link,
-					picture: user._json.picture,
+					name: user._json.name,
+					link: user._json.link,
+					picture: user._json.picture || 'http://graph.facebook.com/v2.2/' + user.id + '/picture',
 					gender: user._json.gender
 				}, function(err, results){
 					if(err){
@@ -20,10 +20,12 @@ module.exports = {
 					}
 				})
 			} else {
+				//if ()
 				User.create({
-					googleId: user.id,
-					name: user.displayName,
-					plusLink: user._json.link,
+					accountType: user.provider,
+					socialId: user.id,
+					name: user._json.name,
+					link: user._json.link,
 					picture: user._json.picture,
 					gender: user._json.gender
 				}, function(err, results){
@@ -38,19 +40,19 @@ module.exports = {
 		return deferred.promise;
 	},
 	getUser: function(id){
-		console.log(id);
+		//console.log(id);
 		var deferred = Q.defer();
-		User.findOne({ 'googleId': id }, function(err, results){
+		User.findOne({ 'socialId': id }, function(err, results){
 			if(err){
 				deferred.reject(err);
 			} else {
-				console.log(results);
+				//console.log(results);
 				deferred.resolve(results);
 			}
 		})
 		return deferred.promise;
 	},
-	put: function(req, res){
+/*	put: function(req, res){
 		delete req.body._id;
 		console.log(req.body)
 		User.update({ '_id': req.params.id }, req.body, function(err, results){
@@ -61,5 +63,5 @@ module.exports = {
 				res.status(200).json(results);
 			}
 		})
-	}
+	}*/
 }

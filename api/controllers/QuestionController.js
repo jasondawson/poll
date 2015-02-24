@@ -22,6 +22,8 @@ module.exports = {
 	},
 
 	getQuestions: function(req, res) {
+		//console.log(req.user);
+		//console.log('is trying to get questions');
 		Question
 			.find()
 			.where('active').equals(true)
@@ -41,7 +43,7 @@ module.exports = {
 				response.save();
 				//increment number of user responses
 				User
-					.findOne({'googleId': req.user.id})
+					.findOne({'socialId': req.user.id})
 					.exec()
 					.then(function(currentUser) {
 						currentUser.num_answered++;

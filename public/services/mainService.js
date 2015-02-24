@@ -51,6 +51,8 @@ function mainService ($http, $q, $location) {
 			.success(function(res) {
 				//console.log(res);
 				questionsArr = res;
+				console.log('questions')
+				console.log(questionsArr);
 				dfd.resolve();
 			})
 			.error(function(err) {
