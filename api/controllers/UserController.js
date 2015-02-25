@@ -1,4 +1,5 @@
 var User = require('./../models/userModel');
+var Profile = require('./../models/profileModel');
 var Q = require('q');
 
 module.exports = {
@@ -16,9 +17,12 @@ module.exports = {
 					if(err){
 						return deferred.reject(err);
 					} else {
-						deferred.resolve(results);
+						User.findOne({ 'socialId': user.id}, function(profile) {
+								deferred.resolve(profile);
+							})
+						
 					}
-				})
+				});
 			} else {
 				//if ()
 				User.create({
@@ -34,7 +38,11 @@ module.exports = {
 					} else {
 						deferred.resolve(results);
 					}
-				})
+				});
+
+				Profile.create({
+					socialId: user.id
+				});
 			}
 		})
 		return deferred.promise;
@@ -52,6 +60,20 @@ module.exports = {
 		})
 		return deferred.promise;
 	},
+	getUserProfile: function(id) {
+		console.log(id);
+		var dfd = Q.defer();
+		Profile.findOne({ 'socialId': id}, function(err, results) {
+			console.log(err);
+			console.log(results);
+			if (err) {
+				dfd.reject(err);
+			} else {
+				dfd.resolve(results);
+			} 
+		})
+		return dfd.promise;
+	}
 /*	put: function(req, res){
 		delete req.body._id;
 		console.log(req.body)

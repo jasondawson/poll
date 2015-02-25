@@ -1,0 +1,19 @@
+
+<div class="container-fluid question">
+	<div class="title">Profile</div>
+	<div class="answer">
+			<form>
+			  <div class="form-group">
+			    <label for="bio">Bio</label>
+			    <input type="textarea" class="form-control" id="bio" placeholder="Tell about yourself!" ng-model="vm.profile.bio">
+			  </div>
+			</form>
+	</div>
+	
+	<div class="btn-wrapper">
+		<a class="btn btn-default btn-danger btn-startover" href="/#/welcome"><i class="fa fa-times"></i></a>
+		<button class="btn btn-default btn-success btn-next" ng-click="vm.updateProfile()">
+			<i class="fa fa-floppy-o"></i>
+		</button>
+	</div> 
+</div>

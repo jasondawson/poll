@@ -104,6 +104,24 @@ function mainService ($http, $q, $location) {
 		return dfd.promise;
 	}
 
+	this.getUserProfile = function() {
+		var dfd = $q.defer();
+		$http.get('/api/profile')
+			.success(function(res) {
+				dfd.resolve(res);
+			})
+		return dfd.promise;
+	}
+
+	this.updateProfile = function(profile) {
+		var dfd = $q.defer();
+		$http.put('/api/profile', profile)
+			.success(function(res) {
+				dfd.resolve(res);
+			})
+		return dfd.promise;
+	}
+
 }
 
 })();

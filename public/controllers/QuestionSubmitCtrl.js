@@ -8,8 +8,6 @@ function QuestionSubmitCtrl (mainService) {
 
 	var vm = this;
 
-	vm.test = "Please enter your question";
-
 	vm.formData = {};
 	vm.formFields = [{
         "type": "textarea",

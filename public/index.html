@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="/styles/bootstrap-social.css">
 	<link rel="stylesheet" href="/styles/styles.css" />
+	<link rel="stylesheet" href="/styles/animations.css">
 
 </head>
 <body ng-app="polls">
@@ -19,7 +20,10 @@
 	<div class="container user-info show-fade" ng-show="$root.currentUser.name">
 	<div class="profile-header-wrapper">
 	<img class="profile-image" src="{{$root.currentUser.picture}}" alt="" />
-	<button class="btn btn-default btn-primary flex-top" ng-click="main.logout()">Log Out</button>
+		<div class="profile-header-button-wrapper">
+			<button class="btn grow btn-default btn-primary" ng-click="main.logout()">Log Out</button>
+			<a class="btn btn-default btn-primary" href="/#/profile">Profile</a>
+		</div>
 	</div>
 	<hr>
 	<div class="profile-text">{{$root.currentUser.name}}</div>
@@ -49,6 +53,7 @@
 <script src="/controllers/QuestionCtrl.js"></script>
 <script src="/controllers/ResultsCtrl.js"></script>
 <script src="/controllers/QuestionSubmitCtrl.js"></script>
+<script src="/controllers/ProfileCtrl.js"></script>
 <script src="/services/mainService.js"></script>
 </body>
 </html>

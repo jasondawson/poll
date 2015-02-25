@@ -1,7 +1,7 @@
-/** {
+/* * {
 	outline: 1px solid red;
-}
-*/
+} */
+
 html, body {
 	background: #34495e;
 	height: 100%;
@@ -31,10 +31,21 @@ html, body {
 .profile-header-wrapper {
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.profile-header-button-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .flex-top {
 	align-self: flex-start;
+}
+
+.flex-bottom {
+	align-self: flex-end;
 }
 
 .profile-image {
@@ -269,6 +280,7 @@ canvas {
 	flex-direction: column;
 }
 
-
-.formly-field {
+.form-control {
+	border-radius: 12px;
 }
+

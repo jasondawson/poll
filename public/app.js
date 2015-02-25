@@ -52,6 +52,16 @@ function config ($routeProvider, $httpProvider) {
 			controller: 'QuestionSubmitCtrl',
 			controllerAs: 'vm'
 		})
+		.when('/profile', {
+			templateUrl: '/views/profile.html',
+			controller: 'ProfileCtrl',
+			controllerAs: 'vm',
+			resolve: {
+				userProfileRef: function(mainService) {
+					return mainService.getUserProfile();
+				}
+			}
+		})
 		.otherwise('/');
 };
 
@@ -76,7 +86,7 @@ function run($rootScope, $location, authService) {
 		console.log(next);
 		console.log(current);*/
 		authService.getCurrentUser().then(function(res) {
-			if (res) {
+			if (res.length) {
 				$rootScope.currentUser = res;
 			}
 			if (!$rootScope.currentUser) {

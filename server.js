@@ -1,11 +1,13 @@
 var Express = require('express');
 var Session = require('express-session');
 var Passport = require('passport');
+var CookieParser = require('cookie-parser');
 var BodyParser = require('body-parser');
 var Mongoose = require('mongoose');
 var env = require('./env.js');
 var User = require('./api/controllers/UserController');
 var Question = require('./api/controllers/QuestionController');
+var Profile = require('./api/controllers/ProfileController');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -15,6 +17,7 @@ var currentUser = {};
 
 var isAuthed = function (req, res, next) {
   if (req.isAuthenticated()) { 
+    //console.log(req);
     currentUser = req.user;
   /*  console.log('authenticated:')
     console.log(currentUser.name)*/
@@ -26,6 +29,8 @@ var isAuthed = function (req, res, next) {
 
 var app = Express();
 app.use(Express.static(__dirname + '/public'));
+app.use(CookieParser());
+app.use(BodyParser.urlencoded({ extended: false }));
 app.use(BodyParser.json());
 app.use(Session({
 	secret: env.session_secret,
@@ -57,11 +62,13 @@ Passport.deserializeUser(function(obj, done) {
 Passport.use(new GoogleStrategy({
     clientID: env.clientID,
     clientSecret: env.clientSecret,
-    callbackURL: env.googleCallbackURL
+    callbackURL: env.googleCallbackURL,
+    passReqToCallback: true
   },
-  function(token, tokenSecret, profile, done){
+  function(req, token, tokenSecret, profile, done){
     // Successful authentication, create or update user.
     User.updateOrCreate(profile).then(function(results){
+      //console.log(req.session);
       done(null, profile);
   }, function(err){
       done(err, profile);
@@ -74,13 +81,28 @@ Passport.use(new FacebookStrategy({
     callbackURL: env.facebookCallbackURL
   },
   function(accessToken, refreshToken, profile, done) {
-    //console.log(profile);
+    // Successful authentication, create or update user.
+      //console.log(profile);
     User.updateOrCreate(profile).then(function(results){
+
+ /*     req.login(profile, function(err) {
+        if (err) {
+          return done(err, profile);
+        }
+        console.log('Should be logged in');
+      });*/
+      //console.log(req.session.passport.user);
       done(null, profile);
   }, function(err){
       done(err, profile);
   })
 }));
+
+/*var middle = function(req, res, next){
+  console.log(req.session);
+  console.log(req.user)
+  next();
+}*/
 
 
 
@@ -88,26 +110,55 @@ Passport.use(new FacebookStrategy({
 app.get('/auth/google', Passport.authenticate('google', {scope: 'https://www.googleapis.com/auth/plus.login'}));
 app.get('/auth/google/callback', Passport.authenticate('google', { failureRedirect: '/' }),
   function(req, res) {
+    //console.log(req.session);
+    //console.log(req.isAuthenticated());
     //successful authentication redirect, redirect user to welcome screen.
-    //console.log(req.user);
-    currentUser = req.user;
+    User.getUser(req.user.id).then(function(userProfile) {
+    currentUser = userProfile;
+    })
     //console.log(currentUser);
     return res.redirect('/#/welcome');
     //res.status(200).json(req.user);
   });
 
+
 app.get('/auth/facebook', Passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', Passport.authenticate('facebook', { failureRedirect: '/' }),
+  function(req, res) {
+    //console.log(req.session);
+    //console.log(req.isAuthenticated());
+    //successful authentication redirect, redirect user to welcome screen.
+/*    console.log('req.user: ');
+    console.log(req.user);*/
+    User.getUser(req.user.id).then(function(userProfile) {
+    currentUser = userProfile;
+    })
+    //console.log(currentUser);
+    return res.redirect('/#/welcome');
+    //res.status(200).json(req.user);
+  });
+
+/*,
     function(req, res) {
       console.log(req.user);
-      currentUser = req.user;
-      //console.log(currentUser);
+      req.login(req.user, function(err) {
+        if (err) { 
+          //console.log(err);
+          return next(err); 
+        }
+        currentUser = req.user;
+        return res.redirect('/#/welcome');
+      });
+      //console.log(req.user);
+     /* currentUser = req.user;
+      console.log(currentUser);
       return res.redirect('/#/welcome');
-    });
+    })*/
 
 
 app.get('/auth/logout', function(req, res){
   req.logout();
+  currentUser = {};
   res.status(200).end();
 });
 
@@ -131,8 +182,16 @@ app.get('/api/questions', isAuthed, Question.getQuestions);
 
 app.put('/api/questions/:questionId/:answerIndex', isAuthed, Question.answerQuestion);
 
+app.get('/api/profile', isAuthed, function(req, res) {
+  User.getUserProfile(req.user.id)
+    .then(function(result) {
+      res.status(200).json(result);
+    });
+  });
 
-//for seed data and later
+app.put('/api/profile', isAuthed, Profile.updateProfile);
+
+
 app.post('/api/questions', isAuthed, Question.addQuestion);
 
 
