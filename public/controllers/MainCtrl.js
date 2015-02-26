@@ -14,6 +14,10 @@ function MainCtrl (authService, $location) {
 				$location.path('/')
 			});
 	}
+
+	main.viewProfile = function() {
+		$location.path('/profile');
+	}
 }
 
 })();

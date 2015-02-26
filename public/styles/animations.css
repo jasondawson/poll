@@ -8,19 +8,26 @@
 }
 
 .btn {
-	transition: all .4s;
+	transition: all .03s ease;
 	z-index: 1;
-}
-
-.btn {
 	transform: scale(1);
 }
 
 .btn:hover {
-	transition: all .8s;
+	transition: all .05s ease-in-out;
 	z-index: 5;
+	transform: scale(1.1);
+	box-shadow: 3px 3px 5px black;
 }
 
-.btn:hover {
+.btn-answer {
+	transition: all .08s ease;
+	z-index: 1;
+	transform: scale(1);
+}
+
+.btn-answer:hover {
+	transition: all .2s ease-in-out;
+	z-index: 5;
 	transform: scale(1.1);
 }

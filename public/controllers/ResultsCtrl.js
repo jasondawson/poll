@@ -11,30 +11,35 @@ function ResultsCtrl ($location, mainService) {
 
 	var colors = [
 	    {
-	        color:"#F7464A",
-	        highlight: "#FF5A5E"
+	        color:"#4527A0", //material ui purple 900
+	        highlight: "#4527A0"
 	    },
 	    {
-	        color: "#46BFBD",
+	        color: "#0D47A1", //material ui blue 900
 	        highlight: "#5AD3D1"
 	    },
 	    {
-	        color: "#FDB45C",
+	        color: "#c62828", //red 800
 	        highlight: "#FFC870"
 	    },
 	    {
-	    	color: '#3498db',
+	    	color: '#006064', // cyan 900
 	    	highlight: '#57a6db'
 	    }
 	]
 
 	vm.getResults = function() {
 		var data = [];
-		var options = {legendTemplate : "<div class=\"<%=name.toLowerCase()%>-legend legend\"><% for (var i=0; i<segments.length; i++){%><span class=\"custom-bullet<%=i%> inline\" style=\"background-color:<%=segments[i].fillColor%>\"><%if(segments[i].label){%><%=segments[i].label%></span><%}%><br class=\"clear\" /><%}%></div>",
-			animateScale : true}
+		var options = {
+				legendTemplate : "<div class=\"<%=name.toLowerCase()%>-legend legend\"><% for (var i=0; i<segments.length; i++){%><div class=\"legend-flex\"><div class=\"custom-bullet custom-bullet<%=i%>\" style=\"background-color:<%=segments[i].fillColor%>\"></div><%if(segments[i].label){%><p class=\"legend-text\"><%=segments[i].label%></p></div><%}%><%}%></div>",
+				animateScale : true,
+				percentageInnerCutout : 35,
+				animationEasing : "easeOutQuint",
+				animateRotate : true,
+				showTooltips: false}
 
 		vm.results = mainService.getCurrentResults();
-		console.log(vm.results);
+		//console.log(vm.results);
 		for (var i = 0; i < vm.results.choices.length; i++) {
 			console.log(i);
 			data[i] = {
@@ -44,7 +49,7 @@ function ResultsCtrl ($location, mainService) {
 				label: vm.results.choices[i].answer
 			}
 		}
-		console.log(data);
+		//console.log(data);
 		var ctx = document.getElementById("myChart").getContext("2d");
 		var myDoughnutChart = new Chart(ctx).Doughnut(data, options);
 		vm.legendHtml = myDoughnutChart.generateLegend();
@@ -59,3 +64,20 @@ function ResultsCtrl ($location, mainService) {
 }
 
 })();
+
+
+/*
+
+ <div class="doughnut-legend legend">
+ 	<div class="legend-flex">
+ 		<div class="custom-bullet0 pull-left" style="background-color:#F7464A">
+ 		</div>
+ 		<p class="legend-text pull-right">
+ 		Android
+ 		</p>
+ 		</div>
+ 		<hr class="hr-legend clear">
+ 		<div class="legend-flex"><div class="custom-bullet1 pull-left" style="background-color:#46BFBD"></div><p class="legend-text pull-right">iOS</p></div><hr class="hr-legend clear"></div>
+ </div>
+
+*/

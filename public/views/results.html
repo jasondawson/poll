@@ -1,14 +1,22 @@
 <div class="container question">
-<div class="title-flex">{{vm.results.text}}</div>
-<div class="container answer">
-<canvas class="clear pull-left" id="myChart" height="350px" width="350px"></canvas>
-<span class="pull-right" ng-bind-html="vm.legendHtml"></span>
-<br class="cf" />
-</div>
+	<div class="title-flex">
+		{{vm.results.text}}
+	</div>
+		
+		<div class="container answer">
+			<div class="row">
+				<canvas class="clear pull-left" id="myChart" height="350px" width="350px">	
+				</canvas>
+				<span class="pull-right" ng-bind-html="vm.legendHtml"></span>
+				<br class="cf" />
+			</div>
+	</div>
 
 	<div class="btn-wrapper">
-		<a class="btn btn-default btn-warning btn-startover" href="/#/welcome"><i class="fa fa-eject"></i></a>
-		<button class="btn btn-default btn-primary btn-next" ng-click="vm.nextQuestion()">
+		<a class="btn btn-default btn-warning btn-startover" href="/#/welcome">
+			<i class="fa fa-eject"></i>
+		</a>
+		<button class="btn btn-default btn-next" ng-click="vm.nextQuestion()">
 			<i class="fa fa-play"></i>
 		</button>
 	</div> 

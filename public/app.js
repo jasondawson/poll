@@ -44,9 +44,6 @@ function config ($routeProvider, $httpProvider) {
 			controller: 'ResultsCtrl',
 			controllerAs: 'vm'
 		})
-		.when('/theEnd', {
-			templateUrl: '/views/theEnd.html'
-		})
 		.when('/question/submit', {
 			templateUrl: '/views/questionSubmit.html',
 			controller: 'QuestionSubmitCtrl',
