@@ -136,7 +136,7 @@ html, body {
 	top: 1px;
 }
 
-.btn-next {
+.btn-next, .btn-next:focus {
 	flex-grow: 2;
 	height: 1.8em;
 	font-size: 1.2em;
@@ -168,6 +168,13 @@ html, body {
 
 .result-text {
 	font-size: .8em;
+}
+
+.btn-answer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	background: #CFD8DC;
 }
 
 .btn-answer:hover {
@@ -290,16 +297,14 @@ canvas {
 	border-radius: 12px;
 }
 
-.btn-bluegrey:hover {
-	background: #4CAF50;
-	border: 1px solid #4CAF50;
-	color: white;
-}
-
-.btn-bluegrey {
+.btn-bluegrey, .btn-bluegrey:focus {
 	background: #607D8B;
 	border: 4px groove #607D8B;
 	color: white;
 }
 
-
+.btn-bluegrey:hover {
+	background: #4CAF50;
+	border: 1px solid #4CAF50;
+	color: white;
+}

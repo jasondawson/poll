@@ -4,9 +4,11 @@ angular
 	.module('polls')
 	.controller('QuestionSubmitCtrl', QuestionSubmitCtrl);
 
-function QuestionSubmitCtrl (mainService) {
+function QuestionSubmitCtrl (mainService, $timeout, $location) {
 
 	var vm = this;
+	vm.submitMessage = "Question has been submitted. Thank you!";
+	vm.showMessage = false;
 
 	vm.formData = {};
 	vm.formFields = [{
@@ -58,6 +60,10 @@ function QuestionSubmitCtrl (mainService) {
 		mainService.addQuestion(vm.formData)
 			.then(function() {
 				vm.formData = {};
+				vm.showMessage = true;
+				$timeout(function() {
+					vm.showMessage = false;
+				}, 2500);
 			})
 
 	}

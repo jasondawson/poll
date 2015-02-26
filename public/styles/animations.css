@@ -17,7 +17,7 @@
 	transition: all .05s ease-in-out;
 	z-index: 5;
 	transform: scale(1.1);
-	box-shadow: 3px 3px 5px black;
+	box-shadow: 15px 15px 10px black, -15px -15px 180px rgba(255, 255, 255, .4);
 }
 
 .btn-answer {

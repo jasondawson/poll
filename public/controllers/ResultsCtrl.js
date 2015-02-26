@@ -36,7 +36,8 @@ function ResultsCtrl ($location, mainService) {
 				percentageInnerCutout : 35,
 				animationEasing : "easeOutQuint",
 				animateRotate : true,
-				showTooltips: false}
+				showTooltips: true,
+				tooltipTemplate: "<%= value %>"}
 
 		vm.results = mainService.getCurrentResults();
 		//console.log(vm.results);

@@ -1,12 +1,14 @@
 
 <div class="container-fluid question">
-	<div class="title">Profile</div>
-	<div class="answer">
+	<div class="title inline">Profile</div>
+		<div class="answer">
 			<form>
 			  <div class="form-group">
 			    <label for="bio">Bio</label>
 			    <input type="textarea" class="form-control col-md-8" id="bio" placeholder="Tell about yourself!" ng-model="vm.profile.bio" />
 			  </div>
+			  <p ng-show="vm.showMessage">{{vm.saveMessage}}</p>
+
 			</form>
 	</div>
 	
