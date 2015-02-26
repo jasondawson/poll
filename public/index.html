@@ -15,23 +15,33 @@
 
 
 	<div ng-controller="MainCtrl as main">
-		
-	
-	<div class="container user-info show-fade" ng-show="$root.currentUser.name">
-	<div class="profile-header-wrapper">
-	<img class="profile-image" src="{{$root.currentUser.picture}}" alt="" />
-		<div class="profile-header-button-wrapper">
-			<button class="btn grow btn-default btn-bluegrey" ng-click="main.logout()">Log Out</button>
-			<button class="btn btn-default btn-bluegrey" ng-click="main.viewProfile()">Profile</button>
+		<div class="container user-info show-fade" ng-show="$root.currentUser.name">
+			<div class="profile-header-wrapper">
+				<img class="profile-image" src="{{$root.currentUser.picture}}" alt="" />
+				<div class="profile-header-button-wrapper">
+					<button class="btn grow btn-default btn-bluegrey" ng-click="main.logout()">
+						Log Out
+					</button>
+					<button class="btn btn-default btn-bluegrey" ng-click="main.viewProfile()">
+						Profile
+					</button>
+				</div>
+			</div>
+			<hr class="cf">
+			<div class="profile-text">
+				{{$root.currentUser.name}}
+			</div>
+			<p>
+				has answered
+			</p>
+			<div class="profile-text">
+				{{$root.currentUser.num_answered}}
+			</div>
+			<p>
+				questions!
+			</p>
+			<br class="clear" />
 		</div>
-	</div>
-	<hr>
-	<div class="profile-text">{{$root.currentUser.name}}</div>
-	<p>has answered</p>
-	<div class="profile-text">{{$root.currentUser.num_answered}}</div>
-	<p>questions!</p>
-	<br class="clear" />
-	</div>
 	</div>
 	<ng-view class="container"></ng-view>
 
