@@ -11,8 +11,8 @@ var Profile = require('./api/controllers/ProfileController');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
-var port = 8080;
-var mongoUri = '127.0.0.1:27034/polls';
+var port = (process.env.EXPRESS_PORT || 8080);
+var mongoUri = '127.0.0.1/polls';
 var currentUser = {};
 
 var isAuthed = function (req, res, next) {
@@ -33,7 +33,7 @@ app.use(CookieParser());
 app.use(BodyParser.urlencoded({ extended: false }));
 app.use(BodyParser.json());
 app.use(Session({
-	secret: env.session_secret,
+	secret: (process.env.SESSION_SECRET || env.session_secret),
   saveUninitialized: true,
     resave: true
 }));
@@ -60,9 +60,9 @@ Passport.deserializeUser(function(obj, done) {
 });
 
 Passport.use(new GoogleStrategy({
-    clientID: env.clientID,
-    clientSecret: env.clientSecret,
-    callbackURL: env.googleCallbackURL,
+    clientID: (process.env.googleClientId || env.googleClientID),
+    clientSecret: (process.env.googleClientSecret || env.googleClientSecret),
+    callbackURL: (process.env.googleCallbackURL || env.googleCallbackURL),
     passReqToCallback: true
   },
   function(req, token, tokenSecret, profile, done){
@@ -75,7 +75,7 @@ Passport.use(new GoogleStrategy({
   })
 }));
 
-Passport.use(new FacebookStrategy({
+/*Passport.use(new FacebookStrategy({
     clientID: env.FACEBOOK_APP_ID,
     clientSecret: env.FACEBOOK_APP_SECRET,
     callbackURL: env.facebookCallbackURL
@@ -85,18 +85,18 @@ Passport.use(new FacebookStrategy({
       //console.log(profile);
     User.updateOrCreate(profile).then(function(results){
 
- /*     req.login(profile, function(err) {
+        req.login(profile, function(err) {
         if (err) {
           return done(err, profile);
         }
         console.log('Should be logged in');
-      });*/
+      });
       //console.log(req.session.passport.user);
       done(null, profile);
   }, function(err){
       done(err, profile);
   })
-}));
+}));*/
 
 /*var middle = function(req, res, next){
   console.log(req.session);
