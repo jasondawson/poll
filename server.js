@@ -11,7 +11,7 @@ var Profile = require('./api/controllers/ProfileController');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
-var port = (process.env.EXPRESS_PORT || 8080);
+var port = process.env.EXPRESS_PORT || 8080;
 var mongoUri = '127.0.0.1/polls';
 var currentUser = {};
 
@@ -33,7 +33,7 @@ app.use(CookieParser());
 app.use(BodyParser.urlencoded({ extended: false }));
 app.use(BodyParser.json());
 app.use(Session({
-	secret: (process.env.SESSION_SECRET || env.session_secret),
+	secret: process.env.SESSION_SECRET || env.session_secret,
   saveUninitialized: true,
     resave: true
 }));
@@ -60,9 +60,9 @@ Passport.deserializeUser(function(obj, done) {
 });
 
 Passport.use(new GoogleStrategy({
-    clientID: (process.env.googleClientId || env.googleClientID),
-    clientSecret: (process.env.googleClientSecret || env.googleClientSecret),
-    callbackURL: (process.env.googleCallbackURL || env.googleCallbackURL),
+    clientID: process.env.googleClientId || env.googleClientID,
+    clientSecret: process.env.googleClientSecret || env.googleClientSecret,
+    callbackURL: process.env.googleCallbackURL || env.googleCallbackURL,
     passReqToCallback: true
   },
   function(req, token, tokenSecret, profile, done){
