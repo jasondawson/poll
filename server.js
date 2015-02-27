@@ -60,9 +60,9 @@ Passport.deserializeUser(function(obj, done) {
 });
 
 Passport.use(new GoogleStrategy({
-    clientID: process.env.googleClientId || env.googleClientID,
-    clientSecret: process.env.googleClientSecret || env.googleClientSecret,
-    callbackURL: process.env.googleCallbackURL || env.googleCallbackURL,
+    clientID: (process.env.googleClientId || env.googleClientID),
+    clientSecret: (process.env.googleClientSecret || env.googleClientSecret),
+    callbackURL: (process.env.googleCallbackURL || env.googleCallbackURL),
     passReqToCallback: true
   },
   function(req, token, tokenSecret, profile, done){
