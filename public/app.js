@@ -79,9 +79,6 @@ function myHttpInterceptor($q) {
 
 function run($rootScope, $location, authService) {
 	$rootScope.$on('$routeChangeStart', function(event, next, current) {
-		/*console.log(event);
-		console.log(next);
-		console.log(current);*/
 		authService.getCurrentUser().then(function(res) {
 			if (res.length) {
 				$rootScope.currentUser = res;

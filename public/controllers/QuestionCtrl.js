@@ -11,7 +11,6 @@ function QuestionCtrl (mainService, $location) {
 	
 	vm.getQuestion = function() {
 		mainService.getQuestion().then(function(res) {
-			console.log(res);
 			vm.question = res;
 		})
 	}
@@ -21,13 +20,10 @@ function QuestionCtrl (mainService, $location) {
 	vm.getQuestion();
 
 	vm.answerQuestion = function(answerIndex) {
-	/*	console.log(answerIndex);
-		console.log(vm.question.selected);*/
 		var toRemove = vm.question.selected;
 		var questionId = vm.question._id;
 		mainService.answerQuestion(questionId, answerIndex, toRemove)
 			.then(function(res) {
-//				console.log(res);
 				vm.results = res;
 				$location.path('/results');
 			});

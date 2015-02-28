@@ -48,24 +48,19 @@ module.exports = {
 		return deferred.promise;
 	},
 	getUser: function(id){
-		//console.log(id);
 		var deferred = Q.defer();
 		User.findOne({ 'socialId': id }, function(err, results){
 			if(err){
 				deferred.reject(err);
 			} else {
-				//console.log(results);
 				deferred.resolve(results);
 			}
 		})
 		return deferred.promise;
 	},
 	getUserProfile: function(id) {
-		console.log(id);
 		var dfd = Q.defer();
 		Profile.findOne({ 'socialId': id}, function(err, results) {
-			console.log(err);
-			console.log(results);
 			if (err) {
 				dfd.reject(err);
 			} else {
@@ -74,16 +69,4 @@ module.exports = {
 		})
 		return dfd.promise;
 	}
-/*	put: function(req, res){
-		delete req.body._id;
-		console.log(req.body)
-		User.update({ '_id': req.params.id }, req.body, function(err, results){
-			console.log(err, results);
-			if(err){
-				res.status(500).json(err);
-			} else {
-				res.status(200).json(results);
-			}
-		})
-	}*/
 }

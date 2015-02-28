@@ -13,7 +13,6 @@ function authService($http, $q, $rootScope) {
 		$http.get('/auth/currentUser')
 			.then(function(res) {
 				currentUser = res.data;
-				/*console.log(currentUser);*/
 				$rootScope.currentUser = currentUser;
 				dfd.resolve(currentUser);
 			})

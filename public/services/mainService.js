@@ -25,7 +25,6 @@ function mainService ($http, $q, $location) {
 	this.getQuestion = function() {
 			var dfd = $q.defer();
 		if (!questionsArr.length) {
-			console.log('refresh questions')
 			mS.getQuestions().then(function() {
 				var arrIndex = Math.floor(Math.random() * (questionsArr.length - 0)) + 0;
 				var currentQuestion = questionsArr[arrIndex];
@@ -49,10 +48,7 @@ function mainService ($http, $q, $location) {
 		if (!questionsArr.length) {
 		$http.get('/api/questions')
 			.success(function(res) {
-				//console.log(res);
 				questionsArr = res;
-				console.log('questions')
-				console.log(questionsArr);
 				dfd.resolve();
 			})
 			.error(function(err) {
@@ -98,7 +94,6 @@ function mainService ($http, $q, $location) {
 			
 			$http.post('/api/questions', newQuestion)
 				.success(function(res) {
-					console.log(res);
 					dfd.resolve();
 				})
 		return dfd.promise;

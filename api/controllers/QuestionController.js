@@ -22,8 +22,6 @@ module.exports = {
 	},
 
 	getQuestions: function(req, res) {
-		//console.log(req.user);
-		//console.log('is trying to get questions');
 		Question
 			.find()
 			.where('active').equals(true)

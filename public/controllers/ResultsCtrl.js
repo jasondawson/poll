@@ -40,9 +40,7 @@ function ResultsCtrl ($location, mainService) {
 				tooltipTemplate: "<%= value %>"}
 
 		vm.results = mainService.getCurrentResults();
-		//console.log(vm.results);
 		for (var i = 0; i < vm.results.choices.length; i++) {
-			console.log(i);
 			data[i] = {
 				value: vm.results.choices[i].timeschosen,
 				color: colors[i].color,
@@ -50,11 +48,9 @@ function ResultsCtrl ($location, mainService) {
 				label: vm.results.choices[i].answer
 			}
 		}
-		//console.log(data);
 		var ctx = document.getElementById("myChart").getContext("2d");
 		var myDoughnutChart = new Chart(ctx).Doughnut(data, options);
 		vm.legendHtml = myDoughnutChart.generateLegend();
-		console.log(vm.legendHtml);
 	}
 
 	vm.nextQuestion = function() {

@@ -13,7 +13,6 @@ function ProfileCtrl (mainService, userProfileRef, $timeout) {
 	
 
 	vm.updateProfile = function() {
-		console.log(vm.profile);
 		mainService.updateProfile(vm.profile)
 			.then(function(response) {
 				vm.profile = response;
