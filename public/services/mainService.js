@@ -47,7 +47,7 @@ function mainService ($http, $q, $location) {
 	this.getQuestions = function() {
 		var dfd = $q.defer();
 		if (!questionsArr.length) {
-		$http.get(apiUrl + '/api/questions')
+		$http.get('/api/questions')
 			.success(function(res) {
 				//console.log(res);
 				questionsArr = res;
@@ -65,7 +65,7 @@ function mainService ($http, $q, $location) {
 	this.answerQuestion = function(questionId, answerIndex, toRemove) {
 		//increment count to appropriate response 
 		var dfd = $q.defer();
-		$http.put(apiUrl + '/api/questions/' + questionId + '/' + answerIndex)
+		$http.put('/api/questions/' + questionId + '/' + answerIndex)
 			.success(function(res) {
 				//TODO remove question from cache questionArr
 				removeCachedQuestion(toRemove);
@@ -96,7 +96,7 @@ function mainService ($http, $q, $location) {
 				}
 			}
 			
-			$http.post(apiUrl + '/api/questions', newQuestion)
+			$http.post('/api/questions', newQuestion)
 				.success(function(res) {
 					console.log(res);
 					dfd.resolve();
