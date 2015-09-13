@@ -1,9 +1,9 @@
-<div class="container-fluid question">
+<div class="question">
 
-	<div class="container-fluid title-flex question-child-title">
+	<div class="title-flex question-child-title">
 		<p>{{vm.question.text}}</p>
 	</div>
-	<div class="container parent answer question-child-main">
+	<div class="parent answer question-child-main">
 			<div class="child btn btn-default btn-block btn-answer" ng-repeat="choice in vm.question.choices" ng-click="vm.answerQuestion($index)">
 				<p class="answer-text">{{choice.answer}}</p>
 			</div>
