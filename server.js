@@ -16,12 +16,12 @@ var mongoUri = '127.0.0.1/polls';
 var currentUser = {};
 
 var isAuthed = function (req, res, next) {
-  if (req.isAuthenticated()) { 
+  if (req.isAuthenticated()) {
     //console.log(req);
     currentUser = req.user;
   /*  console.log('authenticated:')
     console.log(currentUser.name)*/
-    return next(); 
+    return next();
   }
   console.log('Not authenticated');
   res.status(401).end();
@@ -46,7 +46,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
     res.setHeader('Access-Control-Allow-Credentials', true);
-  
+
     next();
 });
 
@@ -142,9 +142,9 @@ app.get('/auth/facebook/callback', Passport.authenticate('facebook', { failureRe
     function(req, res) {
       console.log(req.user);
       req.login(req.user, function(err) {
-        if (err) { 
+        if (err) {
           //console.log(err);
-          return next(err); 
+          return next(err);
         }
         currentUser = req.user;
         return res.redirect('/#/welcome');
