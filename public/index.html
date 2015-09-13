@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Polls</title>
+	<title>Question&Answer</title>
+	<link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
@@ -11,7 +12,8 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="/styles/bootstrap-social.css">
 	<link rel="stylesheet" href="/styles/styles.css" />
-	<link rel="stylesheet" href="/styles/animations.css">
+	<link rel="stylesheet" href="/styles/animations.css" />
+	<link rel="stylesheet" href="/styles/animate.css" />
 
 </head>
 <body ng-app="polls">
@@ -20,7 +22,7 @@
 	<div ng-controller="MainCtrl as main">
 		<div ng-cloak class="user-info show-fade" ng-show="$root.currentUser.name">
 			<div class="profile-header-wrapper">
-				<img class="small-screen-hide profile-image" src="{{$root.currentUser.picture}}" alt="" />
+				<img class="small-screen-hide profile-image" ng-src="{{$root.currentUser.picture || null}}" alt="" />
 				<div class="profile-header-button-wrapper">
 					<button class="btn grow btn-default btn-bluegrey" ng-click="main.logout()">
 						Log Out
