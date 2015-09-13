@@ -7,15 +7,12 @@ angular
 function QuestionCtrl (mainService, $location) {
 
 	var vm = this;
-	vm.test = "Hello Question";
-	
+
 	vm.getQuestion = function() {
 		mainService.getQuestion().then(function(res) {
 			vm.question = res;
 		})
 	}
-
-
 
 	vm.getQuestion();
 
@@ -28,13 +25,6 @@ function QuestionCtrl (mainService, $location) {
 				$location.path('/results');
 			});
 	}
-
-	vm.nextQuestion = function() {
-
-	}
-
-
-	
 }
 
 })();

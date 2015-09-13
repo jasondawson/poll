@@ -55,7 +55,6 @@ function QuestionSubmitCtrl (mainService, $timeout, $location) {
 	]
 	;
 
-
 	vm.onSubmit = function() {
 		mainService.addQuestion(vm.formData)
 			.then(function() {
