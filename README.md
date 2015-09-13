@@ -1,11 +1,13 @@
 
-<img src="http://jasondawson.com/img/polls.png" data-canonical-src="http://jasondawson.com/img/polls.png" width="100" height="200" />
+<img src="http://jasondawson.com/img/polls.png" data-canonical-src="http://jasondawson.com/img/polls.png" width="600" height="350" />
 
 ## Question & Answer
 -------
 
 This app poses the question: What does everyone think about (insert your question here)? Submit your questions, answer questions, and see how everyone compares.
 It uses angular for the front-end, node & express for the server and a mongo database.
+
+See it live [here](http://poll.jasondawson.com).
 
 While developing this idea, I knew I wanted to bring in some 3rd-party modules. So I found [angular-formly](http://angular-formly.com/) (thanks @kentcdodds), [chart.js](http://www.chartjs.org/), [animate.css](https://daneden.github.io/animate.css/) and [passport-google-oauth](https://github.com/jaredhanson/passport-google-oauth). I also practiced css pseudo-selectors and using bootstrap and custom classes for styling.
 
