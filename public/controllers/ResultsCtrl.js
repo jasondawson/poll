@@ -31,9 +31,9 @@ function ResultsCtrl ($location, mainService) {
 	vm.getResults = function() {
 		var data = [];
 		var options = {
-				legendTemplate : "<div class=\"<%=name.toLowerCase()%>-legend legend\"><% for (var i=0; i<segments.length; i++){%><div class=\"legend-flex\"><div class=\"custom-bullet custom-bullet<%=i%>\" style=\"background-color:<%=segments[i].fillColor%>\"></div><%if(segments[i].label){%><p class=\"legend-text\"><%=segments[i].label%></p></div><%}%><%}%></div>",
+				legendTemplate : "<div class=\" legend\"><% for (var i=0; i<segments.length; i++){%><div class=\"legend-flex\"> <%if(segments[i].fillColor){%><div class=\"custom-bullet custom-bullet<%=i%>\" ></div><%}%><%if(segments[i].label){%><p class=\"legend-text\"><%=segments[i].label%></p><%}%></div><%}%><p class=\"center-text\"><strong><%=total%></strong> responses! </p></div>",
 				animateScale : true,
-				percentageInnerCutout : 35,
+				percentageInnerCutout : 40,
 				animationEasing : "easeOutQuint",
 				animateRotate : true,
 				showTooltips: true,
@@ -50,11 +50,12 @@ function ResultsCtrl ($location, mainService) {
 			}
 		}
 		var ctx = document.getElementById("myChart").getContext("2d");
-		var myDoughnutChart = new Chart(ctx).Doughnut(data, options);
-		vm.legendHtml = myDoughnutChart.generateLegend();
+		vm.myDoughnutChart = new Chart(ctx).Doughnut(data, options);
+		vm.legendHtml = vm.myDoughnutChart.generateLegend();
 	}
 
 	vm.nextQuestion = function() {
+		vm.myDoughnutChart.destroy();
 		$location.path('/question');
 	}
 
@@ -62,20 +63,3 @@ function ResultsCtrl ($location, mainService) {
 }
 
 })();
-
-
-/*
-
- <div class="doughnut-legend legend">
- 	<div class="legend-flex">
- 		<div class="custom-bullet0 pull-left" style="background-color:#F7464A">
- 		</div>
- 		<p class="legend-text pull-right">
- 		Android
- 		</p>
- 		</div>
- 		<hr class="hr-legend clear">
- 		<div class="legend-flex"><div class="custom-bullet1 pull-left" style="background-color:#46BFBD"></div><p class="legend-text pull-right">iOS</p></div><hr class="hr-legend clear"></div>
- </div>
-
-*/
