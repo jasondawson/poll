@@ -37,6 +37,7 @@ function ResultsCtrl ($location, mainService) {
 				animationEasing : "easeOutQuint",
 				animateRotate : true,
 				showTooltips: true,
+				responsive: true,
 				tooltipTemplate: "<%= value %>"}
 
 		vm.results = mainService.getCurrentResults();
