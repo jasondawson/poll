@@ -91,7 +91,10 @@ html, body {
 /* other */
 
 .title {
+	font-family: 'Gloria Hallelujah', cursive;
+	font-size: 60px;
 	min-height: 80px;
+	text-align: center;
 }
 
 .full-width {
@@ -100,7 +103,7 @@ html, body {
 }
 .question {
 	background: #90A4AE;
-	margin-top: 50px;
+	margin-top: 22px;
 	margin-left: 90px;
 	width: 80%;
 	min-width: 80%;
@@ -199,7 +202,7 @@ html, body {
 }
 
 .answer-text {
-	font-size: 1.4em;
+	font-size: 1.2em;
 }
 
 .result-text {
@@ -209,7 +212,7 @@ html, body {
 .btn-answer {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: center;
 	background: #CFD8DC;
 }
 
@@ -244,7 +247,8 @@ clear:both;
 
 #mychart {
 	max-width: 60%;
-	flex-grow: 4;
+	max-height: 60%;
+	flex-grow: 3;
 }
 
 .pull-left {
@@ -268,7 +272,7 @@ clear:both;
 	position: fixed;
 	top: 280px;
 	left: 10px;
-	text-align: center;
+	text-align: left;
 }
 
 @media (max-width: 855px) {
@@ -314,6 +318,10 @@ p.legend-text {
 	line-height: 100%;
 }
 
+.center-text {
+	text-align: center;
+}
+
 .legend-flex {
 	display: flex;
 	justify-content: flex-start;
@@ -344,8 +352,10 @@ canvas {
 }
 
 .chart-container {
+	height: 50%;
+	width: 50%;
 	max-height: 50%;
-	max-width: 60%;
+	max-width: 50%;
 }
 
 .btn-wrapper-login {
