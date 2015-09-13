@@ -122,38 +122,38 @@ app.get('/auth/google/callback', Passport.authenticate('google', { failureRedire
   });
 
 
-app.get('/auth/facebook', Passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', Passport.authenticate('facebook', { failureRedirect: '/' }),
-  function(req, res) {
-    //console.log(req.session);
-    //console.log(req.isAuthenticated());
-    //successful authentication redirect, redirect user to welcome screen.
-/*    console.log('req.user: ');
-    console.log(req.user);*/
-    User.getUser(req.user.id).then(function(userProfile) {
-    currentUser = userProfile;
-    })
-    //console.log(currentUser);
-    return res.redirect('/#/welcome');
-    //res.status(200).json(req.user);
-  });
+// app.get('/auth/facebook', Passport.authenticate('facebook'));
+// app.get('/auth/facebook/callback', Passport.authenticate('facebook', { failureRedirect: '/' }),
+//   function(req, res) {
+//     //console.log(req.session);
+//     //console.log(req.isAuthenticated());
+//     //successful authentication redirect, redirect user to welcome screen.
+// /*    console.log('req.user: ');
+//     console.log(req.user);*/
+//     User.getUser(req.user.id).then(function(userProfile) {
+//     currentUser = userProfile;
+//     })
+//     //console.log(currentUser);
+//     return res.redirect('/#/welcome');
+//     //res.status(200).json(req.user);
+//   });
 
-/*,
-    function(req, res) {
-      console.log(req.user);
-      req.login(req.user, function(err) {
-        if (err) {
-          //console.log(err);
-          return next(err);
-        }
-        currentUser = req.user;
-        return res.redirect('/#/welcome');
-      });
-      //console.log(req.user);
-     /* currentUser = req.user;
-      console.log(currentUser);
-      return res.redirect('/#/welcome');
-    })*/
+// /*,
+//     function(req, res) {
+//       console.log(req.user);
+//       req.login(req.user, function(err) {
+//         if (err) {
+//           //console.log(err);
+//           return next(err);
+//         }
+//         currentUser = req.user;
+//         return res.redirect('/#/welcome');
+//       });
+//       //console.log(req.user);
+//      /* currentUser = req.user;
+//       console.log(currentUser);
+//       return res.redirect('/#/welcome');
+//     })*/
 
 
 app.get('/auth/logout', function(req, res){
@@ -174,9 +174,7 @@ app.get('/auth/currentUser', function(req, res) {
   }
 });
 
-
 //endpoints
-
 
 app.get('/api/questions', isAuthed, Question.getQuestions);
 
@@ -193,9 +191,6 @@ app.put('/api/profile', isAuthed, Profile.updateProfile);
 
 
 app.post('/api/questions', isAuthed, Question.addQuestion);
-
-
-
 
 //connections
 
