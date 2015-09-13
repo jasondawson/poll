@@ -1,5 +1,5 @@
 
-<img src="http://jasondawson.com/img/polls.png" data-canonical-src="http://jasondawson.com/img/polls.png" width="100" height="200" />
+<img src="http://jasondawson.com/img/polls.png" data-canonical-src="http://jasondawson.com/img/polls.png" width="600" height="350" />
 
 ## Question & Answer
 -------
