@@ -1,9 +1,9 @@
 (function() {
 
 angular
-	.module('polls', [	'ngRoute', 
-						'ngSanitize', 
-						'ngAnimate', 
+	.module('polls', [	'ngRoute',
+						'ngSanitize',
+						'ngAnimate',
 						'formly',
 						'formlyBootstrap'])
 	.config(config)
@@ -25,6 +25,7 @@ function config ($routeProvider, $httpProvider) {
 			templateUrl: '/views/welcome.html',
 			controller: 'WelcomeCtrl',
 			controllerAs: 'vm',
+			css: '',
 			resolve: {
 				questionsRef: function(mainService) {
 					return mainService.getQuestions();
@@ -87,8 +88,8 @@ function run($rootScope, $location, authService) {
 
 				$location.path('/');
 			}
-		});			
-		
+		});
+
 	})
 
 	}
