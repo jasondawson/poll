@@ -20,7 +20,7 @@ module.exports = {
 						User.findOne({ 'socialId': user.id}, function(profile) {
 								deferred.resolve(profile);
 							})
-						
+
 					}
 				});
 			} else {
@@ -65,7 +65,7 @@ module.exports = {
 				dfd.reject(err);
 			} else {
 				dfd.resolve(results);
-			} 
+			}
 		})
 		return dfd.promise;
 	}

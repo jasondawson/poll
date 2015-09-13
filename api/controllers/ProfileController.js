@@ -8,10 +8,9 @@ module.exports = {
 		var dfd = Q.defer();
 		newProfile = req.body;
 		Profile.findByIdAndUpdate(req.body._id, req.body, function(err, result) {
-			console.log(result);
 			res.status(200).json(newProfile);
 		})
-		
+
 		return dfd.promise;
 	}
 
