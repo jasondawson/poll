@@ -28,6 +28,18 @@ function authService($http, $q, $rootScope) {
 			});
 		return dfd.promise;
 	}
+    
+    this.getEnv = function () {
+        var dfd = $q.defer();
+        $http.get('/api/env')
+            .then(function (env) {
+                dfd.resolve(env.data)
+            })
+            .catch(function (err) {
+                dfd.reject(err);
+            })
+        return dfd.promise;
+    }
 
 }
 

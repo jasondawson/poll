@@ -192,6 +192,11 @@ app.put('/api/profile', isAuthed, Profile.updateProfile);
 
 app.post('/api/questions', isAuthed, Question.addQuestion);
 
+app.get('/api/getEnv', function (req, res) {
+    var env = process.env.NODE_ENV || 'development';
+    res.status(200).json(env);
+})
+
 //connections
 
 Mongoose.connect(mongoUri);
